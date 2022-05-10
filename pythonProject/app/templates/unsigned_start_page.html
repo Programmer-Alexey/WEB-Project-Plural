@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1>{{title}}</h1>
+{% if current_user.is_authenticated %}
+{% for item in news%}
+<div class="col-md6 border rounded linkblock" onclick="location.href='/news/{{item.id}}';">
+    <h3>{{item.title}}</h3>
+    <div>
+        {{item.content}}
+    </div>
+    <div>
+        Автор - {{item.user.name}}, Дата написания - {{item.created_date}}
+    </div>
+</div>
+{% endfor %}
+{% else %}
+{% for item in news%}
+<div class="col-md6 border rounded linkblock" onclick="location.href='/login';">
+    <h3>{{item.title}}</h3>
+    <div>
+        {{item.content}}
+    </div>
+    <div>
+        Автор - {{item.user.name}}, Дата написания - {{item.created_date}}
+    </div>
+</div>
+{% endfor %}
+{% endif %}
+{% endblock %}
